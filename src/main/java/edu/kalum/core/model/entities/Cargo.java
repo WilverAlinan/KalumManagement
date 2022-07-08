@@ -18,15 +18,15 @@ import java.io.Serializable;
 public class Cargo implements Serializable {
     @Id
     @Column(name ="cargo_id")
-    String cargoId;
+    private String cargoId;
     @Column(name = "descripcion")
-    String descripcion;
+    private String descripcion;
     @Column(name = "prefijo")
-    String prefijo;
+    private String prefijo;
     @Column(name = "monto")
-    float monto;
+    private float monto;
     @Column(name = "genera_mora")
-    byte generaMora;
+    private byte generaMora;
     @Column(name = "porcentaje_mora")
-    int porcentajeMora;
+    private int porcentajeMora;
 }

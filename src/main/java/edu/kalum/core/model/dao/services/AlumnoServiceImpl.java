@@ -4,6 +4,8 @@ import edu.kalum.core.model.dao.IAlumnoDao;
 import edu.kalum.core.model.entities.Alumno;
 import edu.kalum.core.model.entities.CarreraTecnica;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +20,24 @@ public class AlumnoServiceImpl implements IAlumnoService{
     }
 
     @Override
+    public Page<Alumno> findAll(Pageable pageable) {
+        return alumnoDao.findAll(pageable);
+    }
+
+    @Override
     public Alumno findById(String alumnoId) {
         return alumnoDao.findById(alumnoId).orElse(null);
+
+    }
+
+    @Override
+    public Alumno save(Alumno alumno) {
+        return alumnoDao.save(alumno);
+    }
+
+    @Override
+    public void delete(Alumno alumno) {
+        alumnoDao.delete(alumno);
 
     }
 }

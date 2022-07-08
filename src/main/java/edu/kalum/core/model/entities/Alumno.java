@@ -1,13 +1,15 @@
 package edu.kalum.core.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,17 +17,28 @@ import java.io.Serializable;
 @Entity
 @Table(name = "alumno")
 public class Alumno implements Serializable {
+
     @Id
     @Column(name = "carne")
-    String alumnoId;
+    public String carne;
+    @OneToMany(mappedBy = "carne",fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private List<Inscripcion> inscripcion;
+
+    @NotEmpty
     @Column(name = "apellidos")
-    String apellidos;
+    private String apellidos;
+    @NotEmpty
     @Column(name = "nombres")
-    String nombres;
+    private String nombres;
+    @NotEmpty
     @Column(name = "direccion")
-    String direccion;
+    private String direccion;
+    @NotEmpty
     @Column(name = "telefono")
-    String telefono;
+    private String telefono;
+    @Email
     @Column(name = "email")
-    String email;
+    private String email;
 }
